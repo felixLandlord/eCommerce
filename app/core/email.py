@@ -5,17 +5,19 @@ from pydantic import BaseModel, EmailStr
 from typing import List
 from app.core.models import User
 import jwt
+from datetime import datetime, timedelta, timezone
+
 
 config_credentials = dotenv_values(".env")
 
 conf = ConnectionConfig(
-    MAIL_SERVER='smtp.mailmug.net',
-    MAIL_PORT=587,
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
     MAIL_USERNAME=config_credentials["EMAIL"],
     MAIL_PASSWORD=config_credentials["PASS"],
     MAIL_FROM=config_credentials["EMAIL"],
-    MAIL_STARTTLS=True,
-    MAIL_SSL_TLS=False,
+    MAIL_STARTTLS=False,
+    MAIL_SSL_TLS=True,
     USE_CREDENTIALS=True,
     VALIDATE_CERTS=True
 )
@@ -26,9 +28,11 @@ class EmailSchema(BaseModel):
     
 
 async def send_email(email: List, instance: User):
+    expiration = datetime.now(timezone.utc) + timedelta(minutes=3)
     token_data = {
         "id": instance.id,
-        "username": instance.username 
+        "username": instance.username,
+        "exp": expiration
     }
     
     token = jwt.encode(token_data, config_credentials["SECRET"], algorithm="HS256")
