@@ -55,3 +55,7 @@ docker-compose up -d
 fastapi dev
 ```
 - The FastAPI app will be available at http://localhost:8000.
+
+
+## Endpoints:
+![minishop.png](minishop.png)
