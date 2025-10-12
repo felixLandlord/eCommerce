@@ -1,0 +1,42 @@
+/* Email template styles */
+.email-container {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.email-header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.email-content {
+    padding: 30px 0;
+    line-height: 1.6;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+    color: #666666;
+    font-size: 12px;
+}
